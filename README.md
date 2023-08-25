@@ -1,8 +1,8 @@
 # runtime-github-action-ping
 
-[![Action test Ubuntu](https://github.com/stack-spot/runtime-github-action-ping/actions/workflows/action-test-ubuntu.yml/badge.svg)](https://github.com/stack-spot/runtime-github-action-ping/actions/workflows/action-test-ubuntu.yml) [![Action test MacOS](https://github.com/stack-spot/runtime-github-action-ping/actions/workflows/action-test-macos.yml/badge.svg)](https://github.com/stack-spot/runtime-github-action-ping/actions/workflows/action-test-macos.yml) [![Action test Windows](https://github.com/stack-spot/runtime-github-action-ping/actions/workflows/action-test-windows.yml/badge.svg)](https://github.com/stack-spot/runtime-github-action-ping/actions/workflows/action-test-windows.yml)
+[![Action test Ubuntu](https://github.com/stack-spot/runtime-github-action-ping/actions/workflows/action-test-ubuntu.yaml/badge.svg)](https://github.com/stack-spot/runtime-github-action-ping/actions/workflows/action-test-ubuntu.yaml) [![Action test MacOS](https://github.com/stack-spot/runtime-github-action-ping/actions/workflows/action-test-macos.yaml/badge.svg)](https://github.com/stack-spot/runtime-github-action-ping/actions/workflows/action-test-macos.yaml) [![Action test Windows](https://github.com/stack-spot/runtime-github-action-ping/actions/workflows/action-test-windows.yaml/badge.svg)](https://github.com/stack-spot/runtime-github-action-ping/actions/workflows/action-test-windows.yaml)
 
-GitHub action to install StackSpot CLI :octocat:
+GitHub action to authenticate and consume StackSpot Runtime API.
 
 _**Note**: This action is supported on all runners operating systems (`ubuntu`, `macos`, `windows`)_
 
