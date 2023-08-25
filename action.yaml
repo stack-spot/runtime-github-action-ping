@@ -1,0 +1,50 @@
+name: 'Runtime Github Action Ping'
+
+description: 'Runtime Github Action Ping'
+
+inputs:
+  CLIENT_ID:
+    description: Account client id
+    required: true
+  CLIENT_KEY:
+    description: Account client secret key
+    required: true
+  CLIENT_REALM:
+    description: Account client realm
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Check Runner
+      run: echo 🤖 OS runner is $(uname)
+      shell: bash
+
+    - name: Ping Stackspot Runtime v1/runtime-environment
+      shell: bash
+      run: |
+        echo "STARTING AUTHENTICATION..."
+        RESPONSE=$(curl --location 'https://idm.stackspot.com/realms/${{ inputs.CLIENT_REALM }}/protocol/openid-connect/token' \
+        --header 'Content-Type: application/x-www-form-urlencoded' \
+        --data-urlencode 'client_id=${{ inputs.CLIENT_ID }}' \
+        --data-urlencode 'grant_type=client_credentials' \
+        --data-urlencode 'client_secret=${{ inputs.CLIENT_KEY }}')
+        
+        ACCESS_TOKEN=$(echo $RESPONSE | jq -r '.access_token')
+
+        if [ -z "$ACCESS_TOKEN" ]; then
+          echo "ERROR: Authentication failed. Please, check inputs data."
+          exit 1
+        fi
+
+        echo "AUTHENTICATION SUCCESSFUL!"
+
+        RUNTIME_ENVIRONMENT=$(curl --location --request GET \
+        'https://runtime-manager.v1.stackspot.com/v1/runtime-environment' \
+        --header "Authorization: Bearer $ACCESS_TOKEN")
+        
+        echo "RESPONSE: $RUNTIME_ENVIRONMENT"
+
+branding:
+    icon: 'terminal'
+    color: 'gray-dark'

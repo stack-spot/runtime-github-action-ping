@@ -1,0 +1,22 @@
+name: Action Test MacOS
+
+on:
+  push:
+    paths:
+      - '.github/workflows/action-test-linux.yaml'
+      - 'action.yaml'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ubuntu:
+    runs-on: macos-latest
+    steps:
+      - uses: stack-spot/runtime-github-action-ping@main
+        with:
+          CLIENT_ID: ${{ secrets.CLIENT_ID }}
+          CLIENT_KEY: ${{ secrets.CLIENT_KEY }}
+          CLIENT_REALM: ${{ secrets.CLIENT_REALM }}
